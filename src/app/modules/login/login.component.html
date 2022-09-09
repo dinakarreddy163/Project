@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="card">
+        <div class="card-title">
+            <label class="testClass">Login</label>
+        </div>
+        <div class="card-body">
+            <form id="form-login" [formGroup]="loginForm">
+                <div>
+                    <div class="form-group">
+                        <label>User Name</label>
+                        <input type="text" class="form-control" id="UserName" formControlName="userName"
+                            [ngClass]="{'is-valied':loginForm.controls.userName.touched && loginForm.controls.userName.errors}">
+                    </div>
+                    <div *ngIf="loginForm.controls.userName.touched &&loginForm.controls.userName.errors">
+                        <p style="color:red" *ngIf="loginForm.controls.userName.errors.required">Email Was Required..
+                        </p>
+                        <p style="color:red" *ngIf="loginForm.controls.userName.errors.email">Email Format Was
+                            In Correct..</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" id="password" formControlName="password"
+                            [ngClass]="{'is-valied':loginForm.controls.password.touched && loginForm.controls.password.errors}">
+                        <div *ngIf="loginForm.controls.password.touched &&loginForm.controls.password.errors">
+                            <p style="color:red" *ngIf="loginForm.controls.password.errors.required">Password Was
+                                Required..
+                            </p>
+                            <!-- <p style="color:red" *ngIf="loginForm.controls.password.errors?.pattern">Required:Above 8
+                                Characters,Numaric Values,Alpabetic Values,Atleat 1 UpperCase</p> -->
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" (click)="submit()"
+                            [disabled]="loginForm.status=='INVALID'">Login</button><br>
+                        <button type="button" class="btn btn-primary" (click)="generatePwd()">Generate Password</button>
+                        {{password}}
+                    </div>
+
+                </div>
+            </form>
+            <!-- <div routerLinkActive="">
+                <router-outlet></router-outlet>
+            </div> -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg header">
+    <div>
+        <input type="text" placeholder="Search...." class="searchTextBox" [(ngModel)]="searchValue">
+        <button class="btn btn-primary buttonSearch" (click)="search()">Search</button>
+    </div>
+    <div class="collapse navbar-collapse navLeft" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link navColor" routerLink="/home">Home</a>
+            <a class="nav-item nav-link navColor">Features</a>
+            <a class="nav-item nav-link navColor">Pricing</a>
+            <a class="nav-item nav-link navColor">Disabled</a>
+        </div>
+    </div>
+</nav>
+<nav class="titleNav">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link title">{{title}}</a>
+    </div>
+</nav>
