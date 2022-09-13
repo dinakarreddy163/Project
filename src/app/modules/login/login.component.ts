@@ -1,6 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validator, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
+import { AppService } from 'src/app/app.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +15,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: any;
   password?: string;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private app: AppService, public dialogRef: MatDialogRef<LoginComponent>,
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -22,8 +26,12 @@ export class LoginComponent implements OnInit {
   }
   submit() {
     if (this.loginForm.value.password == this.password) {
-      this.router.navigate(['home']);
+      this.app.setAuth(true);
+      localStorage.setItem("isLogin", "true");
+      this.dialogRef.close();
+      // this.router.navigate(['home']);
     } else {
+      this.app.setAuth(false);
       alert("In Valid Password");
     }
   }
@@ -36,5 +44,7 @@ export class LoginComponent implements OnInit {
         * str.length + 1);
       this.password += str.charAt(char)
     }
+    // return this.password;
   }
+  
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-search-item',
@@ -8,12 +9,29 @@ import { AppService } from 'src/app/app.service';
   styleUrls: ['./search-item.component.scss']
 })
 export class SearchItemComponent implements OnInit {
+  getProducts: any;
 
-  constructor(private router:ActivatedRoute,private app:AppService) { }
+  constructor(private router: ActivatedRoute, private app: AppService, private productService: ProductsService) { }
 
   ngOnInit(): void {
-    this.app.setTitle('Search-'+this.router.snapshot.params['id'])
-    console.log(this.router.snapshot.params)
+    this.app.setTitle('Search-' + this.router.snapshot.params['id']);
+    this.getItems();
   }
 
+  getItems() {
+    this.productService.getProducts(this.router.snapshot.params['id']).subscribe(data => {
+      this.getProducts = data;
+      this.getProducts.forEach((e: any, i: any) => {
+        e.price = Math.random() * i + 100;
+        e.qty = 0;
+      })
+
+    })
+  }
+  addToCart()
+  {
+    let cartData = this.getProducts.filter((e:any)=>e.qty!=0);
+    this.app.setAddToCart(cartData);
+    localStorage.setItem('cart',JSON.stringify(cartData));
+  }
 }

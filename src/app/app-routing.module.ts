@@ -6,12 +6,10 @@ import { SignupComponent } from './modules/signup/signup.component';
 
 const routes: Routes = [
   {
-    path:'',component:LoginComponent,data:{name:"Sign Up"}
+    path:'',component:HomeComponent
   },
   {
-    path:'home',component:HomeComponent,children:[{
-      path:'products',loadChildren:()=>import('./modules/products/products.module').then(m=>m.ProductsModule)
-    }]
+    path:'products',loadChildren:()=>import('./modules/products/products.module').then(m=>m.ProductsModule)
   }
 ];
 

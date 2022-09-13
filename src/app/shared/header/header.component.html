@@ -1,19 +1,34 @@
-<nav class="navbar navbar-expand-lg header">
+<nav class="navbar navbar-expand-lg header" *ngIf="checkAuth==true">
     <div>
         <input type="text" placeholder="Search...." class="searchTextBox" [(ngModel)]="searchValue">
         <button class="btn btn-primary buttonSearch" (click)="search()">Search</button>
     </div>
     <div class="collapse navbar-collapse navLeft" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link navColor" routerLink="/home">Home</a>
+            <a class="nav-item nav-link navColor" [routerLink]="['/']">Home</a>
             <a class="nav-item nav-link navColor">Features</a>
             <a class="nav-item nav-link navColor">Pricing</a>
-            <a class="nav-item nav-link navColor">Disabled</a>
+            <a class="nav-item nav-link navColor" (click)="logout()">LogOut</a>
+            <a class="nav-item nav-link navColor">
+                <mat-icon>shopping_cart</mat-icon>
+                <p class="navColor cartItem">{{cartItemLen}}</p>
+            </a>
         </div>
     </div>
 </nav>
-<nav class="titleNav">
+<nav class="titleNav" *ngIf="checkAuth==true">
     <div class="navbar-nav">
         <a class="nav-item nav-link title">{{title}}</a>
     </div>
+</nav>
+<nav class="navbar navbar-expand-lg header" *ngIf="checkAuth==false">
+    <div>
+        <a class="nav-item nav-link navColor">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse navLeft" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link navColor" (click)="open()">Login</a>
+        </div>
+    </div>
+    <!-- <app-login></app-login> -->
 </nav>
