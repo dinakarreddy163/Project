@@ -1,3 +1,12 @@
+<nav class="titleNav" *ngIf="checkAuth==true">
+    <div class="navbar-nav navFloat">
+        <a class="nav-item nav-link title">Logo</a>
+        <div class="nav-item nav-link title">
+            <app-select-address></app-select-address>
+        </div>
+    </div>
+
+</nav>
 <nav class="navbar navbar-expand-lg header" *ngIf="checkAuth==true">
     <div>
         <input type="text" placeholder="Search...." class="searchTextBox" [(ngModel)]="searchValue">
@@ -10,7 +19,7 @@
             <a class="nav-item nav-link navColor">Pricing</a>
             <a class="nav-item nav-link navColor" (click)="logout()">LogOut</a>
             <a class="nav-item nav-link navColor">
-                <mat-icon>shopping_cart</mat-icon>
+                <mat-icon [routerLink]="['orders/cart-items']">shopping_cart</mat-icon>
                 <p class="navColor cartItem">{{cartItemLen}}</p>
             </a>
         </div>

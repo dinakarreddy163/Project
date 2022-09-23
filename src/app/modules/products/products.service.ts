@@ -12,5 +12,9 @@ export class ProductsService {
   {
     return this.http.get('https://jsonplaceholder.typicode.com/photos?albumId='+id);
   }
+  getProductsBy()
+  {
+   return this.http.get("https://dummyjson.com/products");
+  }
 
 }

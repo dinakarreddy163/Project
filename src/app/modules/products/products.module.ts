@@ -7,12 +7,20 @@ import { SpreadSheetsModule } from '@grapecity/spread-sheets-angular';
 import { HttpClientModule } from '@angular/common/http'
 import { ProductsService } from './products.service';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
-import { AuthGuardGuard } from 'src/guards/auth-guard.guard';
 import { FormsModule } from '@angular/forms';
+import { FilterPipe } from '../../pipes/filter/filter.pipe';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { SortPipe } from '../../pipes/sort/sort.pipe';
+import { MatSelectModule } from '@angular/material/select';
+import { IsAuthGuard } from 'src/app/guard/is-auth.guard';
+
 
 const routes: Routes = [
   {
-    path: 'search/:id', component: SearchItemComponent,canActivate:[AuthGuardGuard]
+    path: 'search/:id', component: SearchItemComponent,canActivate:[IsAuthGuard]
   },
   {
     path: 'importItems', component: ImportExportItemsComponent
@@ -27,16 +35,21 @@ const routes: Routes = [
     SearchItemComponent,
     ImportExportItemsComponent,
     ItemDetailComponent,
-
+    FilterPipe,
+    SortPipe
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SpreadSheetsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatIconModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,MatSelectModule,
   ],
-  providers: [ProductsService,AuthGuardGuard]
+  providers: [ProductsService,IsAuthGuard]
   // exports: [RouterModule]
 })
 export class ProductsModule { }

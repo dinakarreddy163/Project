@@ -1,0 +1,68 @@
+<div class="container" > 
+    <div class="row">
+        <div class="col-lg-12 addToCart">
+          <a class="btn btn-primary" *ngIf="!showPrint" (click)="submitOrder()">Submit</a>
+          <a class="btn btn-primary" *ngIf="showPrint" (click)="printOrder()">Print</a>
+        </div>
+
+      </div>
+    <div class="row" style="margin-top:3rem">
+        <div class="col-lg-12">
+            <mat-card>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="bold">Order Number</label>
+                        <p>OR{{orderNum}}</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="bold">Name</label>
+                        <p>Dinakar Reddy</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="bold">Total Amount</label>
+                        <p>{{totalAmount | number : '1.2-2'}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="bold">Billing Addres</label>
+                        <p>D/o:28-3-88,Zh Nagar,
+                            mypadgate, Nellore-524002
+                        </p>
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="bold">Shipping Addres</label>
+                        <p>D/o:28-3-88,Zh Nagar,
+                            mypadgate, Nellore-524002
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" *ngFor="let data of getProducts">
+                        <div class="card cartCard">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <img src="https://via.placeholder.com/150/24f355" style="margin-left: 1rem;" height="90rem" width="90%">
+                                </div>
+                                <div class="col-lg-3">
+                                    <p class="card-text">Item Id: {{data.id}}</p>
+                                    <p class="card-text"[routerLink]="['/products/item-detail/'+data.id]">{{data.title}}</p>
+                                </div>
+                                <div class="col-lg-3">
+                                    <p class="card-text">Price: {{data.price | number : '1.2-2' }}</p>
+                                    <p class="card-text">Qty: {{data.qty}}
+                                </div>
+                                <div class="col-lg-4">
+                                    <!-- <a  class="btn btn-primary">Add To Cart</a> -->
+                                    <!-- <a  class="btn btn-success ">Check Out</a>
+                                    <a  class="btn btn-primary buttnSetup">Update</a>
+                                    <a  class="btn btn-danger buttnSetup">Cancel</a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

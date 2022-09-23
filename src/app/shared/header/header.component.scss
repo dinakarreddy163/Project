@@ -3,7 +3,7 @@
     height: 4rem;
 }
 .navColor{
-    color: white;
+    color: white !important;
     cursor: pointer;
 }
 .is-active{
@@ -30,4 +30,7 @@
 .cartItem{
     margin-top: -3rem;
     margin-left: 6px;
+}
+.navFloat{
+    flex-direction: row;
 }

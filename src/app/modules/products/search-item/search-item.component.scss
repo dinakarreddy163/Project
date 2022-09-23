@@ -2,5 +2,12 @@
     display: flex;
     justify-content: flex-end;
     margin-top: 1rem;
-    margin-left: -1rem;
+    margin-left: -2rem;
+    height: 3rem;
+}
+.searchProducts{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+    margin-left: 1rem;
 }

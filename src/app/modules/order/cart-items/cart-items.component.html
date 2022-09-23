@@ -1,0 +1,35 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12 addToCart">
+          <a class="btn btn-primary" (click)="checkOutAll()">Check Out All</a>
+        </div>
+        <div>
+            <label>Total Amount: {{totalAmount  | number : '1.2-2'}}</label>
+        </div>
+      </div>
+    <div class="row">
+        <div class="col-lg-12" *ngFor="let data of getProducts">
+            <div class="card cartCard">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <img src="https://via.placeholder.com/150/24f355" style="margin-left: 1rem;" height="90rem" width="90%">
+                    </div>
+                    <div class="col-lg-3">
+                        <p class="card-text">Item Id: {{data.id}}</p>
+                        <p class="card-text"[routerLink]="['/products/item-detail/'+data.id]">{{data.title}}</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p class="card-text">Price: {{data.price | number : '1.2-2' }}</p>
+                        <p class="card-text">Qty: <input type="number" [(ngModel)]="data.qty"></p>
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- <a  class="btn btn-primary">Add To Cart</a> -->
+                        <a  class="btn btn-success ">Check Out</a>
+                        <a  class="btn btn-primary buttnSetup">Update</a>
+                        <a  class="btn btn-danger buttnSetup">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -12,6 +12,12 @@ import { HomeComponent } from './modules/home/home.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ScrollDirective } from './directives/scroll.directive';
+import { HttpClientModule } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
+import { SelectAddressComponent } from './shared/select-address/select-address.component';
+import { MatListModule } from '@angular/material/list'
+import { IsAuthGuard } from './guard/is-auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +25,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignupComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    ScrollDirective,
+    SelectAddressComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -28,9 +37,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule,
+    MatCardModule,
+    MatListModule
   ],
-  providers: [],
+  providers: [IsAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

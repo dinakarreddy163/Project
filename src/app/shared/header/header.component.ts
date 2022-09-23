@@ -18,9 +18,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.app.getTitle().subscribe(e => {
       this.title = e;
-    })
+    });
+
     this.checkIsAuth();
     this.getProducts();
+    if (this.checkAuth == false)
+      localStorage.clear();
   }
   search() {
     this.router.navigate(['/products/search/' + this.searchValue])
@@ -39,6 +42,7 @@ export class HeaderComponent implements OnInit {
   }
   logout() {
     this.app.setAuth(false);
+    localStorage.clear();
   }
   getProducts() {
     this.app.getAddToCart().subscribe((val: any) => {

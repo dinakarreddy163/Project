@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import { ProductsService } from '../products.service';
@@ -10,7 +10,8 @@ import { ProductsService } from '../products.service';
 })
 export class SearchItemComponent implements OnInit {
   getProducts: any;
-
+  searchVal:any;
+  selectedValue:any;
   constructor(private router: ActivatedRoute, private app: AppService, private productService: ProductsService) { }
 
   ngOnInit(): void {
@@ -34,4 +35,11 @@ export class SearchItemComponent implements OnInit {
     this.app.setAddToCart(cartData);
     localStorage.setItem('cart',JSON.stringify(cartData));
   }
+  // @HostListener("window:scroll", [])
+  // onScroll(): void {
+  //   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+  //     // Load Your Data Here
+  //     alert("hi")
+  //   }
+  // }
 }
